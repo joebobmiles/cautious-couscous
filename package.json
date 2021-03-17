@@ -1,0 +1,20 @@
+{
+  "name": "cautious-couscous",
+  "version": "0.0.0",
+  "description": "An interesting project written in TypeScript.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joebobmiles/cautious-couscous.git"
+  },
+  "keywords": [],
+  "author": "Joseph R Miles <joe@jrm.dev> (https://jrm.dev)",
+  "license": "Unlicense",
+  "bugs": {
+    "url": "https://github.com/joebobmiles/cautious-couscous/issues"
+  },
+  "homepage": "https://github.com/joebobmiles/cautious-couscous#readme"
+}
