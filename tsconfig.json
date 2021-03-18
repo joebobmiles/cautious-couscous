@@ -1,0 +1,9 @@
+{
+  "exclude": [
+    "@joebobmiles/tsconfig"
+  ],
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": "./src",
+  }
+}

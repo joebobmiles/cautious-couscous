@@ -1,10 +1,12 @@
 {
-  "name": "cautious-couscous",
+  "name": "@joebobmiles/cautious-couscous",
   "version": "0.0.0",
   "description": "An interesting project written in TypeScript.",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "lint": "eslint"
   },
   "repository": {
     "type": "git",
@@ -16,5 +18,56 @@
   "bugs": {
     "url": "https://github.com/joebobmiles/cautious-couscous/issues"
   },
-  "homepage": "https://github.com/joebobmiles/cautious-couscous#readme"
+  "homepage": "https://github.com/joebobmiles/cautious-couscous#readme",
+  "devDependencies": {
+    "@amanda-mitchell/semantic-release-npm-multiple": "^2.5.0",
+    "@joebobmiles/eslint-config-typescript": "^1.3.0",
+    "@joebobmiles/tsconfig": "^1.0.1",
+    "@semantic-release/git": "^9.0.0",
+    "eslint": "^7.22.0",
+    "husky": "^5.1.3",
+    "jest": "^26.6.3",
+    "semantic-release": "^17.4.2",
+    "semantic-release-gitmoji": "^1.3.4",
+    "ts-jest": "^26.5.4",
+    "typescript": "^4.2.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm test"
+    }
+  },
+  "eslintConfig": {
+    "extends": [
+      "@joebobmiles/eslint-plugins-typescript"
+    ]
+  },
+  "release": {
+    "branches": [
+      "master",
+      {
+        "name": "staging",
+        "channel": "preview",
+        "prerelease": "rc"
+      }
+    ],
+    "plugins": [
+      "semantic-release-gitmoji",
+      [
+        "@amanda-mitchell/semantic-release-npm-multiple",
+        {
+          "registries": {
+            "github": {},
+            "public": {}
+          }
+        }
+      ],
+      "@semantic-release/github",
+      "@semantic-release/git"
+    ]
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node"
+  }
 }

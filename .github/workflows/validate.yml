@@ -1,0 +1,54 @@
+name: Push & PR Validation
+on:
+  push:
+    branches-ignore: [ master, staging ]
+  pull_request:
+    branches: [ master, staging ]
+
+jobs:
+  eslint:
+    runs-on: ubuntu-latest
+
+    name: "ESLint"
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 15.x
+
+      - run: npm ci
+
+      - run: npx eslint .
+
+  test:
+    strategy:
+      matrix:
+        os:
+          - ubuntu-latest
+          - macos-latest
+          - windows-latest
+
+        node:
+          - 10.x
+          - 12.x
+          - 14.x
+          - 15.x
+
+    runs-on: ${{ matrix.os }}
+
+    name: Test on ${{ matrix.os }} - Node v${{ matrix.node }}
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+
+      - uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node }}
+
+      - run: npm ci
+
+      - run: npm test
